@@ -7,4 +7,8 @@ public class Domino {
 		this.front = a;
 		this.back = b;
 	}
+	
+	public String toString(){
+		return back + "|" + front;
+	}
 }

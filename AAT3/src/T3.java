@@ -19,6 +19,11 @@ public class T3 {
 			dominos.add(domino);
 		}
 		
+		System.out.println(maxDominos);
+		for(Domino d: dominos){
+			System.out.println(d);
+		}
+		
 		String sequencia = achaSequencia(dominos);		
 		
 		if(sequencia != null) System.out.println(sequencia);
@@ -35,6 +40,8 @@ public class T3 {
 			
 			result = achaSequencia(dominos, d.back);
 			if(result != null) return d.front + " " + d.back + " " + result;		
+			
+			dominos.add(i, d);
 		}
 		
 		return null;
