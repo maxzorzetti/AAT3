@@ -35,33 +35,36 @@ public class T3 {
 		for(int i = 0; i < dominos.size(); i++){
 			Domino d = dominos.remove(i);
 			
+			// Tenta iniciar uma sequencia com o domino d
 			String result = achaSequencia(dominos, d.front);
 			if(result != null) return d.back + " " + d.front + " " + result;			
 			
+			// Tenta iniciar uma sequencia com o domino d virado
 			result = achaSequencia(dominos, d.back);
 			if(result != null) return d.front + " " + d.back + " " + result;		
 			
+			// Poe o domino d de volta na lista se não achou uma sequencia
 			dominos.add(i, d);
 		}
 		
 		return null;
 	}
 	public static String achaSequencia(ArrayList<Domino> dominos, int encaixe){
-		if(dominos.size() == 0) return ""; // Encaixou todos os dominos
+		if(dominos.size() == 0) return "";		 // Encaixou todos os dominos
 		int frente, tras;
 		
 		for(int i = 0; i < dominos.size(); i++){
-			Domino d = dominos.remove(i); // Tira um domino do "saco"
+			Domino d = dominos.remove(i); 		// Tira um domino da lista
 			
-			if(d.back == encaixe){				// "Encaixa" o domino, de frente ou de tras
+			if(d.back == encaixe){				// Encaixa o domino, de frente ou de tras
 				tras = d.back;					//
 				frente = d.front;				// 
 			} else if(d.front == encaixe){		// 
 				tras = d.front;					//
 				frente = d.back;				//
 			} else {
-				dominos.add(i, d);				// Se nao encaixou, poe de volta no
-				continue;						// saco e tenta outro
+				dominos.add(i, d);				// Se nao encaixou, poe de volta na
+				continue;						// lista e tenta outro
 			}
 			
 			String result = achaSequencia(dominos, frente); // Com o domino encaixado, tenta encaixar outros
